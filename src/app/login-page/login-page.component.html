@@ -1,0 +1,100 @@
+<div class="login-page">
+    <div class="login-page-container">
+        <div class="login-page-container__title">{{config.title}}</div>
+        <form class="login-page__form" [formGroup]="formGroup">
+            <ng-container *ngIf="isSignup">
+                <label for="fName" class="login-page__form-label">First Name</label>
+                <input class="login-page__form-input" 
+                       required
+                       formControlName="fName" 
+                       type="text" 
+                       name="fName" 
+                       id="fName"
+                       [ngClass]="{'login-page__form-input--error': isInvalid('fName')}"
+                >
+                <label for="lName" class="login-page__form-label">Last Name</label>
+                <input class="login-page__form-input" 
+                       required
+                       formControlName="lName" 
+                       type="text"
+                       name="lName" 
+                       id="lname"
+                       [ngClass]="{'login-page__form-input--error': isInvalid('lName')}"
+                >
+            </ng-container>
+            <ng-container *ngIf="!isReset">
+                <label for="email" class="login-page__form-label">Email</label>
+                <input class="login-page__form-input" 
+                    required
+                    formControlName="username" 
+                    type="email" 
+                    name="username" 
+                    id="email"
+                    [ngClass]="{'login-page__form-input--error': isInvalid('username')}"
+                >
+            </ng-container>
+            <ng-container *ngIf="isLogin || isSignup || isReset"> 
+                <label for="password" class="login-page__form-label">Password</label>
+                <input class="login-page__form-input" 
+                    formControlName="password" 
+                    type="password" 
+                    name="password" 
+                    id="password"
+                    [ngClass]="{'login-page__form-input--error': isInvalid('password')}"
+                >
+            </ng-container>
+
+            <ng-container *ngIf="isSignup || isReset">
+                <label for="confirmPassword" class="login-page__form-label">Confirm Password</label>
+                <input
+                        required
+                        formControlName="confirmPassword" 
+                        class="login-page__form-input" 
+                        type="password" 
+                        name="confirmPassword" 
+                        id="confirmPassword"
+                        [ngClass]="{'login-page__form-input--error': isInvalid('confirmPassword')}"
+                >
+            </ng-container>
+            
+            <div class="login-page__form-errors">
+                {{ errors }} 
+            </div>
+            <div class="login-page__form-errors--fade" *ngIf="loginError != ''">
+                {{ loginError }}
+            </div>
+
+            <button class="login-page__form-submit" (click)="onSubmit()">
+                <div *ngIf="!isLoading" [innerHTML]="config.buttonText"></div>
+                <div *ngIf="isLoading"class="sk-folding-cube sk-folding-cube-white">
+                    <div class="sk-cube1 sk-cube"></div>
+                    <div class="sk-cube2 sk-cube"></div>
+                    <div class="sk-cube4 sk-cube"></div>
+                    <div class="sk-cube3 sk-cube"></div>
+                </div>
+            </button>
+
+            <button *ngIf="isLogin || isSignup" class="login-page__form-google" (click)="authWithGoogle()">
+                <img class="login-page__form-google-icon" src="assets/icons/google.svg">
+                <div class="login-page__form-google-text" [ngSwitch]="isLogin">
+                    <ng-container *ngSwitchCase="true">Login with Google</ng-container>
+                    <ng-container *ngSwitchCase="false">Signup with Google</ng-container>
+                </div>
+            </button>
+
+            <button *ngIf="isLogin" class="login-page__form-message" (click)="forgotPassword()">
+                Forgot Password?
+            </button>
+
+            <div *ngIf="!!passwordResetMessage" class="login-page__form-message">
+                {{passwordResetMessage}}
+            </div>
+
+            <div class="login-page__form-message">{{config.message}}
+                <button (click)="toggleState()">
+                    <div class="login-page__form-message--link">{{config.secondaryButtonText}}</div>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

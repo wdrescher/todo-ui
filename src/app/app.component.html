@@ -1,0 +1,10 @@
+<div class="root">
+    <div>
+        <header></header>
+        <router-outlet></router-outlet>
+    </div>
+    <footer *ngIf="displayFooter"></footer>
+</div>
+<div *ngIf="isLoading" class="loading-screen">
+    <loading [isLoading]="isLoading"></loading>
+</div>
