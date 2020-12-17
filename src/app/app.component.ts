@@ -95,9 +95,4 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
-  
-  get displayFooter(): boolean {
-    return this.url.indexOf("network") < 0;
-  }
 }

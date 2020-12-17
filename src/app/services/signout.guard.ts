@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
+import { ROUTES } from '../app.constants';
 import { UserStateService } from './user-state.service';
 
 @Injectable({
@@ -20,7 +21,7 @@ export class SignoutGuard implements CanActivate {
     if (this.userStateService.isLoggedIn) {
       this.cookieService.delete("token"); 
       this.userStateService.isLoggedIn = false; 
-      this.router.navigateByUrl('')
+      this.router.navigateByUrl(ROUTES.home)
     }
     return true; 
   }

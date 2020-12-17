@@ -8,12 +8,12 @@ import { GoogleLoginProvider } from 'angularx-social-login';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
+import { HomeComponent } from './home/home.component';
 
  
 declare global {
@@ -23,7 +23,6 @@ declare global {
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent,
     LoginPageComponent,
   ],
   imports: [

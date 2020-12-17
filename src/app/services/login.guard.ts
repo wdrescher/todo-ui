@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take, map } from 'rxjs/operators'; 
+import { ROUTES } from '../app.constants';
 
 import { AuthService } from './auth.service';
 import { UserStateService } from './user-state.service';
@@ -23,7 +24,8 @@ export class LoginGuard implements CanActivate {
       return this.authService.getUserInfo().pipe(
         take(1),
         map(
-          () => {
+          (userInfo) => {
+            this.userStateService.profile = userInfo; 
             return true; 
           },
           () => {

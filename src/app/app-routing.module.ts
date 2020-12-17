@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginGuard } from './services/login.guard'; 
 import { SignoutGuard } from './services/signout.guard';
 import { SustainingLoginGuard } from './services/sustaining-login.guard';
 import { MustBeLoggedInGuard } from './services/must-be-logged-in.guard'; 
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   { path: '', canActivate: [SustainingLoginGuard], children:[
-    { path: "", component: LandingPageComponent },
+    { path: "", component: LoginPageComponent, data: { isSignup: true } },
     { path: "login", component: LoginPageComponent },
     { path: 'login/:route', component: LoginPageComponent }, 
     { path: "forgot-password", component: LoginPageComponent, data: {forgotPassword: true}},
@@ -19,11 +19,11 @@ const routes: Routes = [
     { path: 'signup', component: LoginPageComponent, data: { isSignUp: true }}, 
     { path: "", canActivate: [MustBeLoggedInGuard], children: [
       { path: "", canActivate: [LoginGuard], children: [
-        { path: 'home', component: LoginPageComponent },
+        { path: 'home', component: HomeComponent },
       ]}
     ]}
   ]},
-  { path: 'signout', component: LandingPageComponent, canActivate: [SignoutGuard]}
+  { path: 'signout', component: LoginPageComponent, canActivate: [SignoutGuard]}
 ];
 
 @NgModule({

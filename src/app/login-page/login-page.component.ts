@@ -9,6 +9,7 @@ import { GoogleLoginProvider } from "angularx-social-login";
 import { TokenResponse } from '../services/auth.interface';  
 import { AuthService } from '../services/auth.service';
 import { UserStateService } from '../services/user-state.service';
+import { ROUTES } from 'src/app/app.constants'; 
 
 enum LoginPageState {
   Login = "login", 
@@ -132,7 +133,7 @@ export class LoginPageComponent implements OnInit {
 
   private _login(token: string): void {
     this.cookieService.set("token", token);
-    this.router.navigate([!this._nextRoute ? "network" : this._nextRoute]); 
+    this.router.navigate([!this._nextRoute ? ROUTES.home : this._nextRoute]); 
     this.userStateService.isLoggedIn = true; 
   }
 
@@ -140,7 +141,6 @@ export class LoginPageComponent implements OnInit {
     if (this.formGroup.valid) {
       this.isLoading = true; 
       if (this.isLogin) {
-        window.analytics.track("click:login")
         this.loginError = ''; 
         const username = this.formGroup.controls['username'].value; 
         const password = this.formGroup.controls['password'].value; 
@@ -165,7 +165,6 @@ export class LoginPageComponent implements OnInit {
         ); 
       }
       else if (this.isSignup) {
-        window.analytics.track("click:signup")
         const controls = this.formGroup.controls;
         this.authService.registerUser(
           controls['username'].value, 
@@ -192,7 +191,6 @@ export class LoginPageComponent implements OnInit {
         )
       }
       else if (this.pageState === LoginPageState.ForgotPassword) {
-        window.analytics.track("click:forgot")
         const email = this.formGroup.controls['username'].value; 
         this.authService.forgotPassword(email)
           .pipe(take(1))
@@ -212,7 +210,6 @@ export class LoginPageComponent implements OnInit {
           )
       }
       else if (this.pageState === LoginPageState.ResetPassword) {
-        window.analytics.track("click:reset password")
         let password = this.formGroup.controls["password"].value; 
         this.authService.resetPassword(this._token, password)
           .pipe(take(1))

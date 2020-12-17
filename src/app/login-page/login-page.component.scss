@@ -1,2 +1,127 @@
+.login-page {
+    &__diag {
+        margin-top: 11%; 
+        height: 600px; 
+        width: 100%;
+        background-image: linear-gradient(45deg, #00e1ff, #2709d1);
+        transform: skewY(-12deg);
+    }
+    
+    &__container {
+        display: flex;
+        flex-flow: column nowrap; 
+        align-items: center;
+        border-radius: 10px; 
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        position: absolute;
+        width: 80%;
+        max-width: 500px; 
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 24px; 
 
-$border-width: 1px;
+        &__title {
+            font-weight: 600; 
+            font-size: 20px; 
+            margin-bottom: 12px; 
+        }
+    }
+
+    &__form {
+        width: 80%; 
+        display: flex;
+        flex-flow: column nowrap; 
+        justify-content: center;
+
+        &-label {
+            font-size: 18px; 
+            font-weight: 400; 
+            margin-bottom: 8px; 
+        }
+
+        &-input {
+            font-family: "Roboto";
+            box-sizing: border-box; 
+            width: 100%; 
+            padding: 10px; 
+            height: 20px; 
+            font-size: 16px; 
+            border:1px solid #CFDAE9; 
+            background-color: white; 
+            font-weight: 400;
+            height: 40px; 
+            color: black;
+            border-radius: 5px; 
+            margin-bottom: 16px;
+
+            &--error {
+                border-color: red;
+            }
+        }
+
+        &-errors {
+            font-size: 12px; 
+            color: red; 
+            font-weight: 500; 
+
+            &--fade {
+                font-size: 12px; 
+                color: red; 
+                font-weight: 500; 
+            }
+        }
+
+        &-submit {
+            font-size: 14px; 
+            font-weight: 400; 
+            background-color: #0089d0;
+            color: white;
+            border-radius: 5px; 
+            margin-top: 12px; 
+            width: 100%; 
+            padding: 8px; 
+            box-sizing: border-box;
+            border: unset !important;
+        }
+
+        &-google {
+            margin-top: 12px; 
+            display: flex;
+            width: 100%; 
+            padding: 12px 8px; 
+            background-color: white; 
+            align-items: center;
+            box-sizing: border-box; 
+            border-radius: 5px;
+            justify-content: center;
+            border: 1px solid lightblue !important;
+
+            &-icon {
+                position: absolute;
+                width: 25px; 
+                transform: translateX(-600%); 
+                @media screen and (max-width: 700px) {
+                    transform: translateX(-350%);
+                }
+            }
+            &-text {
+                color: black;
+            }
+        }
+
+        &-message {
+            color: darkgray; 
+            font-size: 12px; 
+            margin: 12px auto; 
+
+            &--link {
+                color: gray;
+                font-size: 12px; 
+                font-weight: 600;
+            }
+        }
+    }
+}

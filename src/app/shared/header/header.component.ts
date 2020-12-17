@@ -15,12 +15,21 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(
-    private _router: Router
+    private _router: Router, 
+    private userStateService: UserStateService
   ) { }
 
   ngOnInit(): void {}
 
   goToSignup(): void {
     this._router.navigateByUrl(ROUTES.signup); 
+  }
+
+  get isLoggedIn(): boolean {
+    return this.userStateService.isLoggedIn; 
+  }
+
+  signout(): void {
+    this._router.navigateByUrl(ROUTES.signout)
   }
 }

@@ -1,6 +1,7 @@
 <div class="login-page">
-    <div class="login-page-container">
-        <div class="login-page-container__title">{{config.title}}</div>
+    <div class="login-page__diag"></div>
+    <div class="login-page__container">
+        <div class="login-page__container__title">{{config.title}}</div>
         <form class="login-page__form" [formGroup]="formGroup">
             <ng-container *ngIf="isSignup">
                 <label for="fName" class="login-page__form-label">First Name</label>
@@ -57,7 +58,7 @@
                 >
             </ng-container>
             
-            <div class="login-page__form-errors">
+            <div class="login-page__form-errors" [ngStyle]="{'height': !errors ? '14px' : 'auto' }">
                 {{ errors }} 
             </div>
             <div class="login-page__form-errors--fade" *ngIf="loginError != ''">
