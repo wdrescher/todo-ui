@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service'
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
@@ -13,8 +13,7 @@ import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
-
+import { HomeModule } from './home/home.module';
  
 declare global {
   interface Window {analytics: any}
@@ -30,6 +29,8 @@ declare global {
     CommonModule,
     BrowserModule,
     AppRoutingModule, 
+    HomeModule, 
+    FormsModule,
     ReactiveFormsModule, 
     HttpClientModule, 
     SocialLoginModule, 

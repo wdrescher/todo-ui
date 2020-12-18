@@ -1,8 +1,9 @@
 <div class="header">
     <div class="header__row">
-        <div class="header__logo">Todooly</div>
+        <button class="header__logo" (click)="clickHome()">Todooly</button>
+        <div class="header__right">
+            <button class="header__link" *ngIf="isLoggedIn" (click)="signout()">Signout</button>
+        </div>
     </div>
-    <div class="header__right">
-        <button class="header__link" *ngIf="isLoggedIn" (click)="signout()">Signout</button>
-    </div>
+
 </div>

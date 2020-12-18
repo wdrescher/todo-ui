@@ -1,0 +1,121 @@
+$height: 50px;
+$icon-size: 20px; 
+.task {
+    width: 100%; 
+
+    &__icon {
+        height: $icon-size; 
+        width: $icon-size; 
+    }
+
+    &__text {
+        font-size: 24px; 
+        font-weight: 400; 
+        width: 100%; 
+        color: black;
+
+        @media screen and (max-width: 600px) {
+            font-size: 18px; 
+        }
+    }
+
+    &__edit {
+        font-family: Roboto;
+        transition: all .5s ease;
+        display: flex;
+        flex-flow: row nowrap; 
+        border:1px solid #CFDAE9; 
+        background-color: aliceblue; 
+        height: 40px; 
+        border-radius: 5px; 
+        width: 100%; 
+        box-shadow: none !important;
+        justify-content: space-between;
+        background-color: white;
+        border: 4px solid #0089d0;
+        height: $height;
+        box-sizing: border-box;
+        margin-bottom: 12px; 
+        align-items: center;
+        padding-left: 31.5px;
+    }
+
+    &__form {
+        display: flex;
+        flex-flow: row nowrap; 
+        width: 100%; 
+        height: 20px; 
+        font-size: 16px; 
+        background-color: transparent; 
+        height: 40px; 
+        border-radius: 5px; 
+        width: 100%; 
+        box-shadow: none !important;
+        padding-left: 1px; 
+        
+
+        &-label {
+            font-size: 18px; 
+            font-weight: 400; 
+            margin-bottom: 8px; 
+        }
+
+        &-input {
+            @extend .task__text;
+            font-weight: unset;
+            color: unset;
+            width: 100%;
+            box-sizing: border-box; 
+            border: 1px solid transparent; 
+            height: 100%; 
+            padding: 10px 0 10px 5px; 
+            box-sizing: border-box;
+            font-family: Roboto;
+            background-color: transparent;
+            outline: none !important;
+
+            &--error {
+                border-color: red;
+            }
+        }
+    }
+
+    &__description {
+        display: flex; 
+        flex-flow: row nowrap; 
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%; 
+        max-width: 100%;
+        padding: 8px; 
+        box-sizing: border-box;
+        display: flex;
+        flex-flow: row nowrap; 
+        align-items: center;
+        justify-content: flex-start;
+        text-align: start;
+        border: 1px solid #CFDAE9;
+        height: $height; 
+        margin-bottom: 12px; 
+        border-radius: 5px;    
+        padding-left: 11px;     
+        background-color: white;
+
+        &-text {
+            font-family: "Roboto";
+            text-align: start;
+            width: 100%; 
+            color: black; 
+            @extend .task__text; 
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &-check {
+            height: 20px; 
+            width: 20px; 
+        }
+    }
+}

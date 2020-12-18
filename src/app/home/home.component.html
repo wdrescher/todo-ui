@@ -1,1 +1,28 @@
-<p>home works!</p>
+<div class="home">
+    <div class="home__container">
+        <div class="home__task-display" *ngIf="taskList.length >= 1">
+            <ng-container *ngFor="let task of taskList; let i = index">
+                <task style="width: 100%" [task]="task" [index]="i" [tasks]="tasks" [taskList]="taskList"></task>
+            </ng-container>
+        </div>
+        <div *ngIf="taskList.length <= 0">
+            Add a task to get started!
+        </div>
+        <div class="home__new-task">
+            <form [formGroup]="formGroup" class="home__form">
+                <input 
+                    autofocus
+                    class="home__form-input"
+                    type="text" 
+                    id="newTask"
+                    formControlName="task"
+                    [placeholder]="placeholder"
+                    [(ngModel)]="newTaskDesription"
+                >
+            </form>
+            <button (click)="addTask()">
+                <img style="width: 20px" src="assets/plus.svg" alt="plus">
+            </button>
+        </div>
+    </div>
+</div>

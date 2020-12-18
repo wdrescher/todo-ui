@@ -32,4 +32,8 @@ export class HeaderComponent implements OnInit {
   signout(): void {
     this._router.navigateByUrl(ROUTES.signout)
   }
+
+  clickHome(): void {
+    this.userStateService.isLoggedIn ? this._router.navigateByUrl(ROUTES.home) : this._router.navigateByUrl(ROUTES.login)
+  }
 }

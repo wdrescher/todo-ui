@@ -21,7 +21,7 @@ export class SignoutGuard implements CanActivate {
     if (this.userStateService.isLoggedIn) {
       this.cookieService.delete("token"); 
       this.userStateService.isLoggedIn = false; 
-      this.router.navigateByUrl(ROUTES.home)
+      this.router.navigateByUrl(ROUTES.login)
     }
     return true; 
   }

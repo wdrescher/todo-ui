@@ -1,1 +1,40 @@
-<p>task works!</p>
+<div class="task">
+    <form [formGroup]="formGroup">
+        <div *ngIf="isEditing" class="task__edit">
+            <div class="task__form" (clickOutside)="close()">
+                <input 
+                    class="task__form-input"
+                    type="text" 
+                    id="newTask"
+                    formControlName="task"
+                    placeholder="Enter a description here."
+                    [(ngModel)]="newDescription"
+                >
+            </div>
+            <button (click)="edit()">
+                <img class="task__icon"src="assets/cancel.svg" alt="x">
+            </button>
+            <button (click)="doneEditing()">
+                <img class="task__icon" src="assets/check.svg" alt="check">
+            </button>
+        </div>
+
+        <button *ngIf="!isEditing" class="task__description">
+            <input
+                class="task__description-check"
+                type="checkbox"
+                [(ngModel)]="saveUsername"
+                [ngModelOptions]="{standalone: true}"
+            >
+            <button (click)="edit()" class="task__description-text">
+                {{description}}
+            </button>
+            <button (click)="down()">
+                <img src="assets/dropdown.svg" alt="down"  class="task__icon">
+            </button>
+            <button (click)="up()">
+                <img src="assets/dropdown.svg" alt="up"  class="task__icon" style="transform: rotate(180deg)">
+            </button>
+        </button>
+    </form>
+</div>
