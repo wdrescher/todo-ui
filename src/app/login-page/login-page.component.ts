@@ -60,15 +60,13 @@ export class LoginPageComponent implements OnInit {
     }
   }
   private _controlNameMapping: {[controlName: string]: string} = {
-    fName: "first name", 
-    lName: "Last Name", 
     username: "Email", 
     password: "Password", 
     confirmPassword: "Matching Password"
   }
   private _pageState = LoginPageState.Login; 
   private _controlNames = [
-    'fName', 'lName', 'username', 'password', 'confirmPassword'
+    'username', 'password', 'confirmPassword'
   ]
   private _token: string;
   private _nextRoute: string; 
@@ -111,8 +109,6 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      fName: [''],
-      lName: [''], 
       username: ['', Validators.email],
       password: [''], 
       confirmPassword: ['']
@@ -168,9 +164,7 @@ export class LoginPageComponent implements OnInit {
         const controls = this.formGroup.controls;
         this.authService.registerUser(
           controls['username'].value, 
-          controls['password'].value, 
-          controls['fName'].value, 
-          controls['lName'].value
+          controls['password'].value
         )
         .pipe(take(1))
         .subscribe(
@@ -290,14 +284,10 @@ export class LoginPageComponent implements OnInit {
     this._pageState = state; 
     switch(state) {
       case LoginPageState.Login: 
-        this.formGroup.controls['fName'].clearValidators();
-        this.formGroup.controls['lName'].clearValidators();
         this.formGroup.controls['confirmPassword'].clearValidators(); 
         this.formGroup.controls['password'].setValidators(Validators.minLength(8)); 
         break; 
       case LoginPageState.Signup: 
-        this.formGroup.controls['fName'].setValidators(Validators.required);
-        this.formGroup.controls['lName'].setValidators(Validators.required);
         this.formGroup.controls['confirmPassword'].setValidators(Validators.required);
         this.formGroup.controls['password'].setValidators(Validators.minLength(8)); 
         break; 

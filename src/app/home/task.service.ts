@@ -27,4 +27,11 @@ export class TaskService {
     }
     return this._http.post(`${API_URL}/tasks/`, data) as Observable<Task>; 
   }
+
+  complete(taskId: string): Observable<any> {
+    let data = {
+      id: taskId
+    }
+    return this._http.post(`${API_URL}/complete/`, data); 
+  }
 }

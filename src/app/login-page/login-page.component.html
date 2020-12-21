@@ -3,26 +3,6 @@
     <div class="login-page__container">
         <div class="login-page__container__title">{{config.title}}</div>
         <form class="login-page__form" [formGroup]="formGroup">
-            <ng-container *ngIf="isSignup">
-                <label for="fName" class="login-page__form-label">First Name</label>
-                <input class="login-page__form-input" 
-                       required
-                       formControlName="fName" 
-                       type="text" 
-                       name="fName" 
-                       id="fName"
-                       [ngClass]="{'login-page__form-input--error': isInvalid('fName')}"
-                >
-                <label for="lName" class="login-page__form-label">Last Name</label>
-                <input class="login-page__form-input" 
-                       required
-                       formControlName="lName" 
-                       type="text"
-                       name="lName" 
-                       id="lname"
-                       [ngClass]="{'login-page__form-input--error': isInvalid('lName')}"
-                >
-            </ng-container>
             <ng-container *ngIf="!isReset">
                 <label for="email" class="login-page__form-label">Email</label>
                 <input class="login-page__form-input" 
@@ -75,13 +55,13 @@
                 </div>
             </button>
 
-            <button *ngIf="isLogin || isSignup" class="login-page__form-google" (click)="authWithGoogle()">
+            <!-- <button *ngIf="isLogin || isSignup" class="login-page__form-google" (click)="authWithGoogle()">
                 <img class="login-page__form-google-icon" src="assets/icons/google.svg">
                 <div class="login-page__form-google-text" [ngSwitch]="isLogin">
                     <ng-container *ngSwitchCase="true">Login with Google</ng-container>
                     <ng-container *ngSwitchCase="false">Signup with Google</ng-container>
                 </div>
-            </button>
+            </button> -->
 
             <button *ngIf="isLogin" class="login-page__form-message" (click)="forgotPassword()">
                 Forgot Password?

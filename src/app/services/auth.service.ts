@@ -24,12 +24,10 @@ export class AuthService {
     return this.http.post(`${API_URL}/api-token-auth/`, body); 
   }
 
-  registerUser(username: string, password: string, firstName: string, lastName: string): Observable<any> {
+  registerUser(username: string, password: string): Observable<any> {
     const body = {
       username: username, 
       password: password, 
-      first_name: firstName, 
-      last_name: lastName, 
       email: username
     }
     return this.http.post(`${API_URL}/api/v1/users/`, body); 

@@ -45,5 +45,14 @@
             color: black; 
             transition: all .3s ease;
         }
+
+        &-icon {
+            display: flex; 
+            flex-flow: row wrap; 
+            justify-content: center;
+            align-items: center;
+            width: 35px; 
+            height: 35px; 
+        }
     }
 }

@@ -2,8 +2,13 @@
     <div class="header__row">
         <button class="header__logo" (click)="clickHome()">Todooly</button>
         <div class="header__right">
-            <button class="header__link" *ngIf="isLoggedIn" (click)="signout()">Signout</button>
+            <button class="header__link" *ngIf="isLoggedIn" (click)="hide()">
+                <img *ngIf="doHide" class="header__link-icon" src="assets/hide.svg" alt="hide">
+                <img *ngIf="!doHide" class="header__link-icon" src="assets/hidden.svg" alt="hide">
+            </button>
+            <button class="header__link" *ngIf="isLoggedIn" (click)="signout()">
+                <img class="header__link-icon" src="assets/logout.svg" alt="logout">
+            </button>
         </div>
     </div>
-
 </div>

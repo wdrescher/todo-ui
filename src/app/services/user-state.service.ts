@@ -8,6 +8,7 @@ import { Profile } from 'src/app/app.interface';
 export class UserStateService {
   isLoggedIn: boolean = false;
   profile: Profile; 
+  hide: boolean = false;
 
   constructor() {}
 }

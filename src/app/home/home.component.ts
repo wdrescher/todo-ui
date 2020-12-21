@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { Task } from '../app.interface';
+import { UserStateService } from '../services/user-state.service';
 
 import { TaskService } from './task.service'; 
  
@@ -29,7 +30,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private _taskService: TaskService, 
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder, 
+    private _userStateService: UserStateService
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +55,11 @@ export class HomeComponent implements OnInit {
   get taskList(): Task[] {
     return this.tasks.sort((a, b) => {
       return b.priority - a.priority;
+    }).filter(elem => {
+      if (this._userStateService.hide) {
+        return !elem.complete
+      }
+      return true; 
     })
   }
 

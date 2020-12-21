@@ -12,8 +12,6 @@ import { UserStateService } from '../../services/user-state.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-
   constructor(
     private _router: Router, 
     private userStateService: UserStateService
@@ -35,5 +33,13 @@ export class HeaderComponent implements OnInit {
 
   clickHome(): void {
     this.userStateService.isLoggedIn ? this._router.navigateByUrl(ROUTES.home) : this._router.navigateByUrl(ROUTES.login)
+  }
+
+  hide(): void {
+    this.userStateService.hide = !this.userStateService.hide;
+  }
+
+  get doHide(): boolean {
+    return this.userStateService.hide;
   }
 }

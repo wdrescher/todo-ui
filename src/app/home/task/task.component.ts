@@ -25,9 +25,13 @@ export class TaskComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this._formBuilder.group({
-      'task': ["Enter description here", Validators.minLength(1)]
+      'task': ["Enter description here", Validators.minLength(1)], 
     })
     this.newDescription = this.task.description;
+  }
+
+  complete(): void {
+    this._taskService.complete(this.task.id).subscribe(); 
   }
   
   get description(): string {

@@ -18,13 +18,13 @@
                 <img class="task__icon" src="assets/check.svg" alt="check">
             </button>
         </div>
-
+    </form>
         <button *ngIf="!isEditing" class="task__description">
             <input
                 class="task__description-check"
                 type="checkbox"
-                [(ngModel)]="saveUsername"
-                [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="task.complete"
+                (change)="complete()"
             >
             <button (click)="edit()" class="task__description-text">
                 {{description}}
@@ -36,5 +36,4 @@
                 <img src="assets/dropdown.svg" alt="up"  class="task__icon" style="transform: rotate(180deg)">
             </button>
         </button>
-    </form>
 </div>
