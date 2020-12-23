@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Task } from 'src/app/app.interface';
@@ -18,16 +19,31 @@ export class TaskComponent implements OnInit {
   dontClose = false; 
   formGroup: FormGroup; 
   isEditing: boolean = false; 
+  date: Date; 
+  today: Date; 
+  overDue: boolean;
+  newDate: string;
+  minDate = new Date(); 
+
   constructor(
     private _formBuilder: FormBuilder,
     private _taskService: TaskService
   ) {}
 
   ngOnInit(): void {
+    this.newDate = this.task.due_date; 
+    this._calculateDate(); 
     this.formGroup = this._formBuilder.group({
       'task': ["Enter description here", Validators.minLength(1)], 
+      "date": []
     })
     this.newDescription = this.task.description;
+  }
+
+  private _calculateDate(): void {
+    this.today = new Date();
+    this.date = new Date(this.task.due_date);
+    this.overDue = this.today.getTime() > this.date.getTime();
   }
 
   complete(): void {
@@ -44,10 +60,14 @@ export class TaskComponent implements OnInit {
   }
 
   doneEditing(): void {
+    if (!!this.newDate) {
+      this.task.due_date = this.newDate; 
+      this._calculateDate(); 
+    }
     this.task.description = this.newDescription; 
-    this._taskService.editTask(this.task.description, this.task.priority, this.task.id).subscribe(
+    this._taskService.editTask(this.task.description, this.task.priority, this.task.id, this.task.due_date).subscribe(
       () => {
-        this.edit; 
+        this.edit(); 
       }
     ); 
   }
@@ -77,5 +97,9 @@ export class TaskComponent implements OnInit {
     }
     this.task.priority = this.taskList[this.index - 1].priority + 1;
     this._taskService.editTask(this.task.description, this.task.priority, this.task.id).subscribe(); 
+  }
+
+  get formattedDate(): string {
+    return formatDate(this.date, "EEEE, MMMM d", "en-us")
   }
 }

@@ -1,9 +1,4 @@
 <ng-container>
     <div *ngIf="!isLoading" [innerHTML]="text"></div>
-    <div *ngIf="isLoading"class="sk-folding-cube" [ngClass]="{'sk-folding-cube-white': white}">
-        <div class="sk-cube1 sk-cube"></div>
-        <div class="sk-cube2 sk-cube"></div>
-        <div class="sk-cube4 sk-cube"></div>
-        <div class="sk-cube3 sk-cube"></div>
-    </div>
+    <div class="lds-dual-ring" *ngIf="isLoading"></div>
 </ng-container>

@@ -7,4 +7,5 @@ export interface Task {
     description: string; 
     priority: number;
     complete: boolean;
+    due_date: string;
 }

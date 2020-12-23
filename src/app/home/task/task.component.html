@@ -1,7 +1,7 @@
 <div class="task">
     <form [formGroup]="formGroup">
-        <div *ngIf="isEditing" class="task__edit">
-            <div class="task__form" (clickOutside)="close()">
+        <div *ngIf="isEditing" class="task__edit" (clickOutside)="close()">
+            <div class="task__form"> 
                 <input 
                     class="task__form-input"
                     type="text" 
@@ -10,6 +10,18 @@
                     placeholder="Enter a description here."
                     [(ngModel)]="newDescription"
                 >
+                <mat-form-field class="task__date-picker" (click)="suppressClose()">
+                    <mat-label>Choose a date</mat-label>
+                    <input 
+                        matInput 
+                        [min]="minDate" 
+                        [matDatepicker]="picker" 
+                        [(ngModel)]="newDate"
+                        formControlName="date"
+                    >
+                    <mat-datepicker-toggle matSuffix [for]="picker" (click)="suppressClose()"></mat-datepicker-toggle>
+                    <mat-datepicker #picker (click)="suppressClose()"></mat-datepicker>
+                </mat-form-field>
             </div>
             <button (click)="edit()">
                 <img class="task__icon"src="assets/cancel.svg" alt="x">
@@ -26,8 +38,11 @@
                 [(ngModel)]="task.complete"
                 (change)="complete()"
             >
-            <button (click)="edit()" class="task__description-text">
+            <button class="task__description-text"(click)="edit()">
                 {{description}}
+            </button>
+            <button *ngIf="!!task.due_date" class="task__description-date" [ngClass]="{'task__description-date--due': overDue}" (click)="edit()">
+                {{formattedDate}}
             </button>
             <button (click)="down()">
                 <img src="assets/dropdown.svg" alt="down"  class="task__icon">

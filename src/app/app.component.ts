@@ -75,24 +75,24 @@ export class AppComponent implements OnInit {
 
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    let cc = window as any;
-    cc.cookieconsent.initialise({
-      palette: {
-        popup: {
-          background: "#196aff"
-        },
-        button: {
-          background: "#1A202C",
-          text: "#FFFFFF"
-        }
-      },
-      position: "bottom-left",
-      content: {
-        message: "This website uses cookies to deliver the best user experience",
-        dismiss: "Agree",
-        link: "Learn more",
-        href: "/privacy-policy" 
-      }
-    });
+    // let cc = window as any;
+    // cc.cookieconsent.initialise({
+    //   palette: {
+    //     popup: {
+    //       background: "#196aff"
+    //     },
+    //     button: {
+    //       background: "#1A202C",
+    //       text: "#FFFFFF"
+    //     }
+    //   },
+    //   position: "bottom-left",
+    //   content: {
+    //     message: "This website uses cookies to deliver the best user experience",
+    //     dismiss: "Agree",
+    //     link: "Learn more",
+    //     href: "/privacy-policy" 
+    //   }
+    // });
   }
 }

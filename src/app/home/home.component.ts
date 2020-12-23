@@ -13,7 +13,7 @@ import { TaskService } from './task.service';
 })
 export class HomeComponent implements OnInit {
   tasks: Task[] = []; 
-
+  newDate: string; 
   newTaskDesription: string; 
   formGroup: FormGroup; 
 
@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
     "Homework", 
     "Taxes"
   ]
+
+  minDate = new Date(); 
 
   constructor(
     private _taskService: TaskService, 
@@ -72,7 +74,7 @@ export class HomeComponent implements OnInit {
 
   addTask(): void {
     if (this.formGroup.valid) {
-      this._taskService.editTask(this.newTaskDesription, this.runningPriority).subscribe(
+      this._taskService.editTask(this.newTaskDesription, this.runningPriority, undefined, this.newDate).subscribe(
         (task) => {
           this.tasks.push(task)
         }

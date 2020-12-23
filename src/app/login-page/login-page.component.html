@@ -46,22 +46,9 @@
             </div>
 
             <button class="login-page__form-submit" (click)="onSubmit()">
-                <div *ngIf="!isLoading" [innerHTML]="config.buttonText"></div>
-                <div *ngIf="isLoading"class="sk-folding-cube sk-folding-cube-white">
-                    <div class="sk-cube1 sk-cube"></div>
-                    <div class="sk-cube2 sk-cube"></div>
-                    <div class="sk-cube4 sk-cube"></div>
-                    <div class="sk-cube3 sk-cube"></div>
-                </div>
+                <!-- <div *ngIf="!isLoading" [innerHTML]="config.buttonText"></div> -->
+                <loading [isLoading]="isLoading" [text]="config.buttonText"></loading>
             </button>
-
-            <!-- <button *ngIf="isLogin || isSignup" class="login-page__form-google" (click)="authWithGoogle()">
-                <img class="login-page__form-google-icon" src="assets/icons/google.svg">
-                <div class="login-page__form-google-text" [ngSwitch]="isLogin">
-                    <ng-container *ngSwitchCase="true">Login with Google</ng-container>
-                    <ng-container *ngSwitchCase="false">Signup with Google</ng-container>
-                </div>
-            </button> -->
 
             <button *ngIf="isLogin" class="login-page__form-message" (click)="forgotPassword()">
                 Forgot Password?

@@ -14,6 +14,7 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { HomeModule } from './home/home.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
 declare global {
   interface Window {analytics: any}
@@ -28,12 +29,12 @@ declare global {
     SharedModule,
     CommonModule,
     BrowserModule,
-    AppRoutingModule, 
+    AppRoutingModule,
     HomeModule, 
     FormsModule,
     ReactiveFormsModule, 
     HttpClientModule, 
-    SocialLoginModule, 
+    SocialLoginModule, BrowserAnimationsModule, 
   ],
   providers: [
     AuthService, 
